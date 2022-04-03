@@ -17,11 +17,11 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('guest_id');
             $table->foreign('guest_id')->references('id')->on('users');
-            $table->unsignedBigInteger('admin_id');
+            $table->unsignedBigInteger('admin_id')->default('1');
             $table->foreign('admin_id')->references('id')->on('users');
             $table->string('date');
             $table->string('total');
-            $table->integer('status');
+            $table->string('status');
             $table->timestamps();
         });
     }

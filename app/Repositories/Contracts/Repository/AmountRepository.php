@@ -12,4 +12,17 @@ class AmountRepository extends BaseRepository implements AmountRepositoryInterfa
     {
         return Amount::class;
     }
+
+    /**
+     * @param integer $room_id
+     * @param string $day
+     * 
+     * @return object
+     */
+    public function findByDay(int $room_id, string $day) : object
+    {
+        $amount = Amount::where('day', $day)->where('room_id', $room_id)->get();
+
+        return $amount;
+    }
 }

@@ -56,6 +56,8 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Type</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Allstock</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hotel</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Set Availability</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Set Amount</th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
@@ -75,9 +77,7 @@
                       <td>
                         <p class="text-xs text-secondary mb-0">
                           @foreach ($types as $type)
-                              @if ($type->key == $room->type)
-                                  {{$type->value_vi}}
-                              @endif
+                              {{$type->key == $room->type ? $type->value_vi : ''}}
                           @endforeach
                         </p>
                       </td>
@@ -88,6 +88,16 @@
                       </td>
                       <td class="align-middle text-center text-sm">
                             <h6 class="mb-0 text-sm">{{$room->hotel->name}}</h6>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                          <a href="{{route('availability.set', ['id'=>$room->id])}}" class="text-secondary mx-1 font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          <i style="font-size:20px" class="fa-solid fa-calendar-check"></i>
+                        </a>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <a href="{{route('amount.set',['id'=>$room->id])}}" class="text-secondary mx-1 font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                         <i style="font-size:20px" class="fa-solid fa-money-bill-transfer"></i>
+                        </a>
                       </td>
                       <td class="align-middle" style="font-size:20px">
                         <a href="{{route('room.show',['id'=>$room->id])}}" class="text-secondary mx-1 font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">

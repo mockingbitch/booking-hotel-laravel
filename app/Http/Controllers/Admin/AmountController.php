@@ -6,13 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\RepositoryInterface\RoomRepositoryInterface;
 use App\Repositories\Contracts\RepositoryInterface\HotelRepositoryInterface;
-use App\Repositories\Contracts\RepositoryInterface\CodeRepositoryInterface;
-use App\Repositories\Contracts\RepositoryInterface\AvailabilityRepositoryInterface;
-use App\Services\AvailabilityService;
+use App\Repositories\Contracts\RepositoryInterface\AmountRepositoryInterface;
+use App\Services\AmountService;
 use Session;
 use Illuminate\View\View;
 
-class AvailabilityController extends Controller
+class AmountController extends Controller
 {
     /**
      * @var @roomRepository
@@ -25,40 +24,32 @@ class AvailabilityController extends Controller
     private $hotelRepository;
 
     /**
-     * @var @codeRepository
+     * @var @amountRepository
      */
-    private $codeRepository;
+    private $amountRepository;
 
     /**
-     * @var @avaiRepo
+     * @var @amountService
      */
-    private $avaiRepo;
-
-    /**
-     * @var @avaiService
-     */
-    private $avaiService;
+    private $amountService;
 
     /**
      * @param RoomRepositoryInterface $roomRepository
      * @param HotelRepositoryInterface $hotelRepository
-     * @param CodeRepositoryInterface $codeRepository
-     * @param AvailabilityRepositoryInterface $avaiRepository
-     * @param AvailabilityService $availabilityService
+     * @param AmountRepositoryInterface $amountRepository
+     * @param AmountService $amountService
      */
     public function __construct(
         RoomRepositoryInterface $roomRepository,
         HotelRepositoryInterface $hotelRepository,
-        CodeRepositoryInterface $codeRepository,
-        AvailabilityRepositoryInterface $avaiRepository,
-        AvailabilityService $availabilityService
+        AmountRepositoryInterface $amountRepository,
+        AmountService $amountService
     ) 
     {
         $this->roomRepository = $roomRepository;
         $this->hotelRepository = $hotelRepository;
-        $this->codeRepository = $codeRepository;
-        $this->avaiRepo = $avaiRepository;
-        $this->avaiService = $availabilityService;
+        $this->amountRepository = $amountRepository;
+        $this->amountService = $amountService;
     }
 
     /**
@@ -70,11 +61,11 @@ class AvailabilityController extends Controller
         $msg = Session::get('msg');
         $currentDate = date('d-m-Y');
 
-        return view('admin.availability.availability-set',[
+        return view('admin.amount.amount-set',[
             'room' => $room,
-            'title' => 'Room-Availability',
+            'title' => 'Room-Amount',
             'currentDate' => $currentDate,
-            'breadcrumb' => 'Availability',
+            'breadcrumb' => 'Amount',
             'msg' => $msg
         ]);
     }
@@ -87,9 +78,9 @@ class AvailabilityController extends Controller
      */
     public function create(int $room_id, Request $request) 
     {
-        $availability = $this->avaiService->createAvailability($room_id, $request->toArray());
+        $amount = $this->amountService->createAmount($room_id, $request->toArray());
         
-        if ($availability == false) {
+        if ($amount == false) {
             return redirect()->back()->with('msg', 'Please check your date range!');
         }
 

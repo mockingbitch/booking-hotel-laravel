@@ -5,6 +5,10 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\HotelController;
 use App\Http\Controllers\Admin\RoomController;
+use App\Http\Controllers\Admin\AvailabilityController;
+use App\Http\Controllers\Admin\AmountController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\BookingController;
 
 
 /*
@@ -47,12 +51,27 @@ Route::prefix('admin')->group(function (){
         Route::get('/delete/{id}', [RoomController::class, 'destroy'])->name('room.delete');
     });
 
+    //Availability
     Route::prefix('availabilities')->group(function (){
-        Route::get('/', [AvailabilityController::class, 'index'])->name('availability.list');
-        Route::post('/', [AvailabilityController::class, 'create']);
-        Route::get('/{id}', [AvailabilityController::class, 'show'])->name('availability.show');
-        Route::post('/{id}', [AvailabilityController::class, 'edit']);
-        Route::get('/delete/{id}', [AvailabilityController::class, 'destroy'])->name('availability.delete');
+        Route::get('/{id}', [AvailabilityController::class, 'index'])->name('availability.set');
+        Route::post('/{id}', [AvailabilityController::class, 'create']);
+        // Route::post('/edit/{id}', [AvailabilityController::class, 'edit']);
+    });
+
+    //Amount 
+    Route::prefix('amount')->group(function (){
+        Route::get('/{id}', [AmountController::class, 'index'])->name('amount.set');
+        Route::post('/{id}', [AmountController::class, 'create']);
+    });
+
+    //User 
+    Route::prefix('user')->group(function (){
+        Route::get('/', [UserController::class, 'index'])->name('user.list');
+    });
+
+    //Booking
+    Route::prefix('booking')->group(function (){
+        Route::get('/', [BookingController::class, 'index'])->name('booking.list');
     });
 });
 

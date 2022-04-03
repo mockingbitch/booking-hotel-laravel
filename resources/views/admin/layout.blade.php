@@ -9,6 +9,8 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <meta name="csrf_token" content="{{ csrf_token() }}" />
     <link
       rel="apple-touch-icon"
       sizes="76x76"
@@ -208,7 +210,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('availability.list')}}">
+            <a class="nav-link" href="{{route('user.list')}}">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -252,11 +254,11 @@
                   </g>
                 </svg>
               </div>
-              <span class="nav-link-text ms-1">Room-Availability</span>
+              <span class="nav-link-text ms-1">Users</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/rtl.html">
+            <a class="nav-link" href="{{route('booking.list')}}">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -300,7 +302,7 @@
                   </g>
                 </svg>
               </div>
-              <span class="nav-link-text ms-1">RTL</span>
+              <span class="nav-link-text ms-1">Bookings</span>
             </a>
           </li>
           <li class="nav-item mt-3">

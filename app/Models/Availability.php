@@ -13,7 +13,7 @@ class Availability extends Model
       /**
      * @var string
      */
-    protected $table = 'availabilites';
+    protected $table = 'availabilities';
 
     /**
      * @var array

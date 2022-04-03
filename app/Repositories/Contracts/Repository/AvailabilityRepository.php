@@ -12,4 +12,17 @@ class AvailabilityRepository extends BaseRepository implements AvailabilityRepos
     {
         return Availability::class;
     }
+
+    /**
+     * @param integer $room_id
+     * @param string $day
+     * 
+     * @return object
+     */
+    public function findByDay(int $room_id, string $day) : object
+    {
+        $availability = Availability::where('day', $day)->where('room_id', $room_id)->get();
+
+        return $availability;
+    }
 }
