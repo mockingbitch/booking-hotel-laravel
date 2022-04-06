@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Repositories\Contracts\RepositoryInterface\HotelRepositoryInterface;
 use Session;
 use Illuminate\View\View;
+use App\Services\HotelService;
 
 class HotelController extends Controller
 {
@@ -16,11 +17,21 @@ class HotelController extends Controller
     private $hotelRepository;
 
     /**
-     * @param HotelRepositoryInterface $hotelRepository
+     * @var @hotelService
      */
-    public function __construct(HotelRepositoryInterface $hotelRepository) 
+    private $hotelService;
+
+    /**
+     * @param HotelRepositoryInterface $hotelRepository
+     * @param HotelService $hotelService
+     */
+    public function __construct(
+        HotelRepositoryInterface $hotelRepository,
+        HotelService $hotelService
+    ) 
     {
         $this->hotelRepository = $hotelRepository;
+        $this->hotelService = $hotelService;
     }
 
     /**
@@ -46,7 +57,7 @@ class HotelController extends Controller
      */
     public function create(Request $request) 
     {
-        $this->hotelRepository->create($request->toArray());
+        $this->hotelService->create($request->toArray());
 
         return redirect()->route('hotel.list')->with('msg', 'Created Successfully!');
     }
@@ -75,7 +86,7 @@ class HotelController extends Controller
      */
     public function update(int $id, Request $request)
     {
-        $this->hotelRepository->update($id, $request->toArray());
+        $this->hotelService->update($id, $request);
 
         return redirect()->route('hotel.list')->with('msg', 'Updated successfully!');
     }

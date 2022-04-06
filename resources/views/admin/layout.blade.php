@@ -1,6 +1,3 @@
-@php 
-  $active = 'active';
-@endphp
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="{{asset('admin/js/jquery.min.js')}}"></script>
     <meta name="csrf_token" content="{{ csrf_token() }}" />
     <link
       rel="apple-touch-icon"
@@ -20,7 +17,7 @@
     <title>{{$title ? $title : 'Booking Hotel'}}</title>
     <!--     Fonts and icons     -->
     <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+      href="{{asset('dashboard/css/font-google.css')}}"
       rel="stylesheet"
     />
     <!-- Nucleo Icons -->
@@ -28,7 +25,7 @@
     <link href="{{asset('dashboard/css/nucleo-svg.css')}}" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script
-      src="https://kit.fontawesome.com/42d5adcbca.js"
+      src="{{asset('dashboard/js/font-awesome.min.js')}}"
       crossorigin="anonymous"
     ></script>
     {{-- <script src="https://kit.fontawesome.com/17fd20985d.js" crossorigin="anonymous"></script> --}}
@@ -68,7 +65,7 @@
             class="navbar-brand-img h-100"
             alt="main_logo"
           />
-          <span class="ms-1 font-weight-bold">Soft UI Dashboard</span>
+          <span class="ms-1 font-weight-bold"><strong>BOOKING HOTEL</strong></span>
         </a>
       </div>
       <hr class="horizontal dark mt-0" />
@@ -483,7 +480,7 @@
               <h6 class="text-white up mb-0">Need help?</h6>
               <p class="text-xs font-weight-bold">Please check our docs</p>
               <a
-                href="https://www.creative-tim.com/learning-lab/bootstrap/license/soft-ui-dashboard"
+                href="https://github.com/mockingbitch/booking-hotel-laravel/blob/master/README.md"
                 target="_blank"
                 class="btn btn-white btn-sm w-100 mb-0"
                 >Documentation</a
@@ -493,7 +490,7 @@
         </div>
         <a
           class="btn bg-gradient-primary mt-3 w-100"
-          href="https://www.creative-tim.com/product/soft-ui-dashboard-pro?ref=sidebarfree"
+          href="https://github.com/mockingbitch/booking-hotel-laravel"
           >Source code</a
         >
       </div>
@@ -544,18 +541,17 @@
               <li class="nav-item d-flex align-items-center">
                 <a
                   class="btn btn-outline-primary btn-sm mb-0 me-3"
-                  target="_blank"
-                  href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard"
+                  href="{{route('home')}}"
                   >Homepage</a
                 >
               </li>
               <li class="nav-item d-flex align-items-center">
                 <a
-                  href="javascript:;"
+                  href="{{route('logout')}}"
                   class="nav-link text-body font-weight-bold px-0"
                 >
                   <i class="fa fa-user me-sm-1"></i>
-                  <span class="d-sm-inline d-none">Sign In</span>
+                  <span class="d-sm-inline d-none">Log out</span>
                 </a>
               </li>
               <li class="nav-item d-xl-none ps-3 d-flex align-items-center">

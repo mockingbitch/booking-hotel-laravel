@@ -21,6 +21,7 @@ class AvailabilityRepository extends BaseRepository implements AvailabilityRepos
      */
     public function findByDay(int $room_id, string $day) : object
     {
+        $day = strtotime($day);
         $availability = Availability::where('day', $day)->where('room_id', $room_id)->get();
 
         return $availability;

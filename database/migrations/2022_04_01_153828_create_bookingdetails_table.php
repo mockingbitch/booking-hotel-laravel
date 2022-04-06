@@ -21,6 +21,7 @@ class CreateBookingdetailsTable extends Migration
             $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
             $table->string('start_date');
             $table->string('end_date');
+            $table->integer('members');
             $table->string('total');
             $table->timestamps();
         });

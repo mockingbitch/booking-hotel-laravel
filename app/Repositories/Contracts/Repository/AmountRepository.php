@@ -21,6 +21,7 @@ class AmountRepository extends BaseRepository implements AmountRepositoryInterfa
      */
     public function findByDay(int $room_id, string $day) : object
     {
+        $day = strtotime($day);
         $amount = Amount::where('day', $day)->where('room_id', $room_id)->get();
 
         return $amount;

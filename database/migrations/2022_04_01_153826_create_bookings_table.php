@@ -21,7 +21,11 @@ class CreateBookingsTable extends Migration
             $table->foreign('admin_id')->references('id')->on('users');
             $table->string('date');
             $table->string('total');
-            $table->string('status');
+            $table->string('guest_name')->nullable();
+            $table->string('guest_email')->nullable();
+            $table->string('guest_phone')->nullable();
+            $table->string('note')->nullable();
+            $table->string('status')->default('INP');
             $table->timestamps();
         });
     }

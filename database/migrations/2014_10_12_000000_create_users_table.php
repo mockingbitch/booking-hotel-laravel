@@ -22,8 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('cccd')->nullable();
             $table->string('position')->default('G');
-            $table->string('isVerify')->default('0');
+            $table->string('isVerify')->default('VE');
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('token')->nullable();
             $table->rememberToken()->nullable();
             $table->timestamps();
         });

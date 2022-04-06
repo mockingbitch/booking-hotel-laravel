@@ -34,6 +34,9 @@
   <div class="form-group">
     <label for="inputImage">Image</label>
     <input type="file" class="form-control" name="image" id="inputImage" placeholder="Upload image">
+    <div class="mt-3 text-center">
+      <img src="{{asset('uploads/rooms/'.$room->image)}}" width="500px"  alt="user1">
+    </div>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
     </form>

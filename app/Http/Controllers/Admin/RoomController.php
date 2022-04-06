@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Repositories\Contracts\RepositoryInterface\RoomRepositoryInterface;
 use App\Repositories\Contracts\RepositoryInterface\CodeRepositoryInterface;
 use App\Repositories\Contracts\RepositoryInterface\HotelRepositoryInterface;
+use App\Services\RoomService;
 use Session;
 use Illuminate\View\View;
 
@@ -28,17 +29,27 @@ class RoomController extends Controller
     private $codeRepository;
 
     /**
+     * @var @roomService
+     */
+    private $roomService;
+
+    /**
      * @param RoomRepositoryInterface $roomRepository
+     * @param HotelRepositoryInterface $hotelRepository
+     * @param CodeRepositoryInterface $codeRepository
+     * @param RoomService $roomService
      */
     public function __construct(
         RoomRepositoryInterface $roomRepository,
         HotelRepositoryInterface $hotelRepository,
-        CodeRepositoryInterface $codeRepository
+        CodeRepositoryInterface $codeRepository,
+        RoomService $roomService
     ) 
     {
         $this->roomRepository = $roomRepository;
         $this->hotelRepository = $hotelRepository;
         $this->codeRepository = $codeRepository;
+        $this->roomService = $roomService;
     }
 
     /**
@@ -69,7 +80,7 @@ class RoomController extends Controller
      */
     public function create(Request $request) 
     {
-        $this->roomRepository->create($request->toArray());
+        $this->roomService->create($request->toArray());
 
         return redirect()->route('room.list')->with('msg', 'Created Successfully!');
     }
@@ -102,7 +113,7 @@ class RoomController extends Controller
      */
     public function edit(int $id, Request $request)
     {
-        $this->roomRepository->update($id, $request->toArray());
+        $this->roomService->update($id, $request);
 
         return redirect()->route('room.list')->with('msg', 'Updated successfully!');
     }

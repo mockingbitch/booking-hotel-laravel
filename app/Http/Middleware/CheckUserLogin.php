@@ -18,18 +18,15 @@ class CheckUserLogin
     public function handle(Request $request, Closure $next)
     {
         if (Auth::guard('user')->check()) {
-            // if (Auth::guard('user')->user()->emailVerify==1){
-            //     return $next($request);
-            // }
-            if (Auth::guard('user')->user()) {
+            if (Auth::guard('user')->user()->isVerify=='VED'){
                 return $next($request);
-            }
-        } elseif (Auth::guard('user')->user()) {   //elseif (Auth::guard('user')->user()->emailVerify=='')
-            Auth::guard('user')->logout();
+            } elseif (Auth::guard('user')->user()->isVerify=='0') {  
+                    Auth::guard('user')->logout();
             
-            return redirect('home/login')->with('msg','Tài khoản chưa được kích hoạt. Vui lòng check mail.');
+                    return redirect()->route('login')->with('msg','Tài khoản chưa được kích hoạt. Vui lòng check email.');
+            }
         } else {
-            return redirect("home/login");
+            return back();
         }
     }
 }

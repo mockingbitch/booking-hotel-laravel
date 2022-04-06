@@ -10,7 +10,7 @@ class Availability extends Model
 {
     use HasFactory;
 
-      /**
+    /**
      * @var string
      */
     protected $table = 'availabilities';

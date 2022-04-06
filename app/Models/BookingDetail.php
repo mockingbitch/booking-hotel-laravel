@@ -23,6 +23,7 @@ class BookingDetail extends Model
         'booking_id',
         'start_date',
         'end_date',
+        'members',
         'total'
     ];
 

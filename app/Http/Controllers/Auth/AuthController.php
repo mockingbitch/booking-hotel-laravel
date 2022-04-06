@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Session;
 
 class AuthController extends Controller
 {
@@ -19,7 +20,13 @@ class AuthController extends Controller
         $credentials =  $request->only('email', 'password');
 
         if (Auth::guard('user')->attempt($credentials)) {
-            return redirect('/admin/dashboard');
+            $user = Auth::guard('user')->user();
+
+            if ($user->position == 'AD') {
+                return redirect()->route('dashboard');
+            } else {
+                return redirect()->route('home');
+            }
         }
         else{
             return view('home.login')->with('msg', 'Wrong username or password!!!');
@@ -29,15 +36,20 @@ class AuthController extends Controller
     /**
      * @return void
      */
-    public function loginView()
+    public function index()
     {
         $user = Auth::guard('user')->user();
 
         if(isset($user)) {
-            return redirect('/');
+            return redirect()->back();
         }
 
-        return view('home.login');
+        $msg = Session::get('msg');
+
+        return view('home.login', [
+            'msg' => $msg,
+            'title' => 'Sign In'
+        ]);
     }
 
     /**

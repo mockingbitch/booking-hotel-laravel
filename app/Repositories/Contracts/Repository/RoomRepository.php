@@ -12,4 +12,16 @@ class RoomRepository extends BaseRepository implements RoomRepositoryInterface
     {
         return Room::class;
     }
+
+    /**
+     * @param integer $id
+     * 
+     * @return object
+     */
+    public function findByHotel(int $id) : object
+    {
+        $rooms = Room::where('hotel_id', $id)->get();   
+
+        return $rooms;
+    }
 }

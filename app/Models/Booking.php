@@ -22,6 +22,10 @@ class Booking extends Model
         'guest_id',
         'admin_id',
         'date',
+        'guest_name',
+        'guest_email',
+        'guest_phone',
+        'note',
         'total',
         'status'
     ];
