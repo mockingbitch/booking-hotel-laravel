@@ -34,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
         => \App\Repositories\Contracts\Repository\AmountRepository::class,
           \App\Repositories\Contracts\RepositoryInterface\AvailabilityRepositoryInterface::class
         => \App\Repositories\Contracts\Repository\AvailabilityRepository::class,
+          \App\Repositories\Contracts\RepositoryInterface\ServiceRepositoryInterface::class
+        => \App\Repositories\Contracts\Repository\ServiceRepository::class,
     ];
 
     /**

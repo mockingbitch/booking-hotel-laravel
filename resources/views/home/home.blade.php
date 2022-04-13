@@ -15,6 +15,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{{asset('home/css/chocolat.css')}}" rel="stylesheet">
 <!-- js -->
 <script src="{{asset('home/js/jquery-1.11.1.min.js')}}"></script>
+<script src="{{asset('dashboard/js/font-awesome.min.js')}}"> </script>
 <!-- //js -->
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 	<!-- start-smoth-scrolling -->
@@ -67,6 +68,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li><a href="#" class="f3"></a></li>
 					<li><a href="#" class="f4"></a></li>
 				</ul>
+			</div>
+			<div class="user">
+				<i class="fa-solid fa-user-gear">
+				</i>
+					@if (isset($user))
+						{{ $user->name }}
+						<a href="{{route('logout')}}">Logout </a>
+					@else
+						<a href="{{route('login')}}">Login</a>
+					@endif
 			</div>
 			<div class="clearfix"></div>
 		</div>

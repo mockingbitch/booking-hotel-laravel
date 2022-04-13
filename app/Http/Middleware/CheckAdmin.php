@@ -17,14 +17,17 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+        return $next($request);
+
         if (Auth::guard('user')->check()) {
             if (Auth::guard('user')->user()->position=='AD'){
-                return $next($request);
+                return redirect()->route('dashboard');
             } elseif (Auth::guard('user')->user()->position=='G') {  
                 return redirect()->route('home');
             }
         } else {
             return back();
         }
+        
     }
 }

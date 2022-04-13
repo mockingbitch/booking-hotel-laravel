@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\AvailabilityController;
 use App\Http\Controllers\Admin\AmountController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\ServiceController;
+
 
 
 /*
@@ -77,6 +79,13 @@ Route::middleware(['CheckUserLogin'])->group(function (){
     Route::prefix('booking')->group(function (){
         Route::get('/', [BookingController::class, 'index'])->name('booking.list');
     });
+
+    //Services
+    Route::prefix('services')->group(function (){
+        Route::get('/', [ServiceController::class, 'index'])->name('services.list');
+    });
+
+
     });
 });
 
@@ -85,7 +94,7 @@ Route::middleware(['CheckUserLogin'])->group(function (){
 //============================================================================
 
 //HOME
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home')                                                                                                                                             ;
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::prefix('hotels')->group(function () {
     Route::get('/', [HomeController::class, 'listHotel'])->name('list.hotel');
